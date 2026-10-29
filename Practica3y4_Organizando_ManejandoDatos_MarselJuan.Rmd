@@ -366,7 +366,7 @@ Crea un data frame denominado `flights.f` que contenga los vuelos que involucren
 
 ```{r }
 flights.f<- flights %>%
-  right_join(planes.f)
+  inner_join(planes.f, by='tailnum')
 ```
 
 ### Ejercicio 8
@@ -403,8 +403,8 @@ Incorpora una nueva variable a `flights` denominado `Full_Date` que sea de tipo 
 ```{r}
 
 flights<- flights %>%
-  mutate(Full_Date= as.character(paste(day,month,year, sep='-'))) %>%
-  select(-day,-month,-year)
+  mutate(Full_Date= as.character(paste(day,month,year.x, sep='-'))) %>%
+  select(-day,-month,-year.x, -year.y)
 
 
 ```
@@ -415,6 +415,17 @@ Utilizando las funciones `group_by`, `summarise` y `filter`, crea un data frame 
 
 ```{r }
 
+
+Distances_plane<- flights%>%
+  #primero descartamos los NA
+  filter(!is.na(tailnum)) %>%
+  group_by(tailnum) %>%
+  summarise(
+    Num_flights= n(),
+    Mean_distance= mean(distance, na.rm=T),
+    Total_distance= sum(distance, na.rm=T)
+    
+  )
 ```
 
 # Ejercicios Extra
