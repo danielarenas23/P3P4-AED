@@ -257,7 +257,7 @@ load('data/tb.Rdata')
 
 tb_tidy<- raw%>%
   gather(key='grupo_dem', value='casos',-country,-year) %>%
-  separate(col=grupo_dem,into=c('sexo','rangoedad'),sep=1) #vemos en help la funcion separate y vemos que si ponemos sep=1 nos separa por posicion de caracter
+  separate(col=grupo_dem,into=c('sexo','edad'),sep=1) #vemos en help la funcion separate y vemos que si ponemos sep=1 nos separa por posicion de caracter
 
 ```
 
