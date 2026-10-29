@@ -388,6 +388,12 @@ Existen variables que, a priori, no tienen demasiado interés para el estudio qu
 
 ```{r }
 
+#Lo hacemos usando select con el menos delante
+flights<-flights %>%
+  select(-time_hour, - ends_with('time') )
+
+planes<- planes %>%
+  select(-c(speed, type))
 ```
 
 ### Ejercicio 10
