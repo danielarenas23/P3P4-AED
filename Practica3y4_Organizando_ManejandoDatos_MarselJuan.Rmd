@@ -253,6 +253,11 @@ Para pasar a formato *tidy* necesitamos realizar dos operaciones en este caso. E
 Convierte el conjunto de datos TB en *tidy* utilizando `gather` y `separate`.
 
 ```{r}
+load('data/tb.Rdata')
+
+tb_tidy<- raw%>%
+  gather(key='grupo_dem', value='casos',-country,-year) %>%
+  separate(col=grupo_dem,into=c('sexo','rangoedad'),sep=1) #vemos en help la funcion separate y vemos que si ponemos sep=1 nos separa por posicion de caracter
 
 ```
 
