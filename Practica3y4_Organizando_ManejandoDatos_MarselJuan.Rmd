@@ -336,9 +336,13 @@ load("./data/VuelosNY.Rdata")
 
 Muestra las primeras muestras de ambos data frames para hacerte una idea de las variables que contienen. ¿Qué diferencia existe entre la información mostrada en ambos data frames?
 
-```{r }
-
+```{r}
+load('data/VuelosNY.Rdata')
+#print(head(flights))
+#print(head(planes))
 ```
+
+La diferencia es que el dataframe **planes** es tidy, mientras que **flights** no lo es, esto se puede ver a simple vista, ya que, por ejemplo, planes contiene columnas cuya información se puede extraer de otras.
 
 ### Ejercicio 6
 
