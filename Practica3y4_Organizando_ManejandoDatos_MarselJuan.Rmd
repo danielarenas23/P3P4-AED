@@ -342,7 +342,7 @@ load('data/VuelosNY.Rdata')
 #print(head(planes))
 ```
 
-La diferencia es que el dataframe **planes** es tidy, mientras que **flights** no lo es, esto se puede ver a simple vista, ya que, por ejemplo, planes contiene columnas cuya información se puede extraer de otras.
+La diferencia es que el dataframe **planes** es tidy, mientras que **flights** no lo es, esto se puede ver a simple vista, ya que, por ejemplo, planes contiene columnas cuya información se puede extraer de otras. Además uno contiene información sobre los vuelos en sí y otro contiene especificaciones sobre los aviones.
 
 ### Ejercicio 6
 
@@ -356,6 +356,7 @@ En nuestro estudio queremos aplicar una serie de criterios de exclusión sobre l
 planes.f<- planes %>%
   filter(!grepl("MCDONNELL DOUGLAS", manufacturer)) %>%
   filter(seats >= 90 & seats <= 210) %>%
+  #usamos ifelse para dejar como están los nombres que no son AIRBUS
   mutate(manufacturer=ifelse(grepl("AIRBUS", manufacturer), 'AIRBUS COMP', manufacturer))
 ```
 
@@ -364,8 +365,8 @@ planes.f<- planes %>%
 Crea un data frame denominado `flights.f` que contenga los vuelos que involucren a los aviones presentes en el data frame `planes.f`. Para ello utiliza algunas de las funciones de **XXX_join** y la variable `tailnum` que es común en ambos data frames.
 
 ```{r }
-
-
+flights.f<- flights %>%
+  right_join(planes.f)
 ```
 
 ### Ejercicio 8
